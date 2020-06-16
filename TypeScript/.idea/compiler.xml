@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="TypeScriptCompiler">
-    <option name="nodeInterpreterTextField" value="$PROJECT_DIR$/../node-v14.4.0-x86.msi" />
-    <option name="scopeName" value="All Places" />
+    <option name="nodeInterpreterTextField" value="C:/Program Files (x86)/nodejs/node" />
+    <option name="recompileOnChanges" value="true" />
+    <option name="scopeName" value="Module 'TypeScript'" />
   </component>
 </project>
