@@ -8,5 +8,5 @@ for(let sport of sports){
         console.log(sport + " is my favourite");
     } else {
         console.log(sport);
-        };
+    }
 }
