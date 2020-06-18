@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table">
   <thead class="thead-dark">
     <tr>
       <th>First Name</th>
@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let salesPerson of salesPersonList">
+    <tr *ngFor="let salesPerson of salesPersonList" [ngClass]="{'highlight':salesPerson.salesVolume>=80000}">
       <td>{{salesPerson.firstName}}</td>
       <td>{{salesPerson.lastName}}</td>
       <td>{{salesPerson.email}}</td>
