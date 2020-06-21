@@ -9,12 +9,15 @@ import {map} from "rxjs/operators";
 })
 export class ProductService {
 
-  private baseUrl='http://localhost:8080/api/products?size=25';
+  private baseUrl: string = "http://localhost:8080/api/products";
 
   constructor(private HttpClient: HttpClient) { }
 
-  getProductList() : Observable<Product[]>{
-    return this.HttpClient.get<GetResponse>(this.baseUrl).pipe(
+
+  getProductList(theCategoryId: number) : Observable<Product[]>{
+    const searchUrl: string = this.baseUrl + "/search/findByCategoryId?id=" + theCategoryId;
+
+    return this.HttpClient.get<GetResponse>(searchUrl).pipe(
       map(response => response._embedded.products)
     );
   }
