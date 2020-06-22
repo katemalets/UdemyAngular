@@ -1,5 +1,5 @@
 -- -----------------------------------------------------
--- Schema full-stack-ecommerce
+-- Schema full-stack-ecommerce(5 elements)
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `full-stack-ecommerce`;
 
