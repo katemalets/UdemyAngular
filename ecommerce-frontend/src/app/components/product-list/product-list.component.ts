@@ -11,9 +11,15 @@ import {ActivatedRoute} from "@angular/router";
 export class ProductListComponent implements OnInit {
 
   products: Product[];
-  currentCategoryId: number;
+  currentCategoryId: number = 1;
+  previousCategoryId: number = 1;
   currentCategoryName : string;
   searchMode: boolean;
+
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
+
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
@@ -44,11 +50,14 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryName = 'Book';
     }
 
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+    if(this.previousCategoryId != this.currentCategoryId){
+      this.pageNumber = 1;
+    }
+    this.previousCategoryId = this.currentCategoryId;
+    console.log("Previous: " + this.previousCategoryId + "\nCurrent: " + this.currentCategoryId);
+
+    this.productService.getProductListPaginate(this.pageNumber - 1, this.pageSize, this.currentCategoryId)
+      .subscribe(this.processResult());
   }
 
   handleSearchProducts() {
@@ -58,5 +67,14 @@ export class ProductListComponent implements OnInit {
         this.products = data;
       }
     )
+  }
+
+  processResult() {
+    return data =>{
+      this.products = data._embedded.products;
+      this.pageNumber = data.page.number + 1;
+      this.pageSize = data.page.size;
+      this.totalElements = data.page.totalElements;
+    }
   }
 }
