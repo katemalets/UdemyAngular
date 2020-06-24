@@ -30,10 +30,22 @@
                 <div class="col-md-9" style="padding-left:30%">
                 <ngb-pagination [(page)]="pageNumber"
                 [pageSize]="pageSize"
+                [maxSize]="5"
                 [collectionSize]="totalElements"
+                                [boundaryLinks]="false"
                 (pageChange)="listProducts()">
                 </ngb-pagination>
                   </div>
+
+                <div class="col-md-3 mt-2" style="text-align: right">
+                  <span class="mr-2">Page Size</span>
+                    <select (change)="updatePageSize($event.target.value)">
+                      <option>2</option>
+                      <option selected="true">8</option>
+                      <option>16</option>
+                      <option>25</option>
+                    </select>
+                </div>
             </div>
           </div>
         </div>
