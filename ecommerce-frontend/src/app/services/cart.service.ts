@@ -17,6 +17,7 @@ export class CartService {
   }
 
   addToCart(cartItem: CartItem){
+
     let alreadyExistsInCart: boolean = false;
     let existingCartItem: CartItem = undefined;
 
@@ -40,5 +41,26 @@ export class CartService {
 
   computeCartTotals() {
 
+    let totalPriceValue: number = 0;
+    let totalQuantityValue: number = 0;
+
+    for(let currentCartItem of this.cartItems){
+      totalPriceValue += currentCartItem.quantity * currentCartItem.unitPrice;
+      totalQuantityValue += currentCartItem.quantity;
+    }
+    this.totalPrice.next(totalPriceValue);
+    this.totalQuantity.next(totalQuantityValue);
+
+    this.logCartData(totalPriceValue, totalQuantityValue){
+      console.log("\nContents of the cart");
+      for(let tempItem of this.cartItems){
+        const subTotalPrice = tempItem.quantity * tempItem.unitPrice;
+        console.log("Name: " + tempItem.name + "Price" + tempItem.unitPrice +
+        "Quantity" + tempItem.quantity + "SubPrice: " + subTotalPrice);
+      }
+        console.log("totalPrice: " + totalPriceValue.toFixed(2) +
+        "totalQuantity: " + totalQuantityValue);
+      console.log("============\n")
+    }
   }
 }
