@@ -27,6 +27,6 @@ export class CheckoutComponent implements OnInit {
   onSubmit(){
     console.log("Handling info...");
     console.log(this.checkoutFormGroup.get('customer').value);
-    console.log("Email: " + this.checkoutFormGroup.get('customer').value.email);
+    console.log("Current email: " + this.checkoutFormGroup.get('customer').value.email);
   }
 }
