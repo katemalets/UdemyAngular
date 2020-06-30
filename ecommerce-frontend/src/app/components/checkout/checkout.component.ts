@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-checkout',
@@ -11,7 +12,11 @@ export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private cartService: CartService) { }
+
+  totalPrice: number = 0;
+  totalQuantity: number = 0;
 
   ngOnInit(): void {
     this.checkoutFormGroup = this.formBuilder.group({
