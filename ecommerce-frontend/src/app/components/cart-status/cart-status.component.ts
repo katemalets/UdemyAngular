@@ -17,7 +17,7 @@ export class CartStatusComponent implements OnInit {
     this.updateCartStatus();
   }
 
-  private updateCartStatus() {
+  updateCartStatus() {
     this.cartService.totalPrice.subscribe(
       data => this.totalPrice = data
     );

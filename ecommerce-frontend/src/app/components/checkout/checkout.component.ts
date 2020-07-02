@@ -14,12 +14,14 @@ export class CheckoutComponent implements OnInit {
   checkoutFormGroup: FormGroup;
   creditCardMonth: number[] = [];
   creditCardYears: number[] = [];
+  totalPrice: number;
+  totalQuantity: number;
 
   constructor(private formBuilder: FormBuilder,
-              private formService: FormService) { }
+              private formService: FormService,
+              private cartService: CartService) { }
 
-  totalPrice: number = 0;
-  totalQuantity: number = 0;
+
 
   ngOnInit(): void {
     this.checkoutFormGroup = this.formBuilder.group({
@@ -64,6 +66,8 @@ export class CheckoutComponent implements OnInit {
         this.creditCardYears = data;
       }
     )
+
+   this.cartService.computeCartTotals();
 
   }
 
